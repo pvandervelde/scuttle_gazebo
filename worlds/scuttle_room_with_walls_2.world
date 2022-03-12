@@ -31,7 +31,7 @@
       </ode>
     </physics>
 
-    <!-- The house model -->
+    <!-- The room model -->
     <include>
       <uri>model://room_with_walls_2</uri>
     </include>
