@@ -13,14 +13,12 @@
         <arg name="debug" value="false"/>
     </include>
 
-    <param name="robot_description" command="$(find xacro)/xacro $(find scuttle_description)/urdf/scuttle.xacro" />
-
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model scuttle -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
-
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
     <include file="$(find scuttle_bringup)/launch/scuttle_bringup.launch">
         <arg name="is_physical" value="false"/>
     </include>
+
+    <!--
+        scuttle_bringup loads the robot model into the 'robot_description' parameter on the parameter server
+    -->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model scuttle -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 </launch>
